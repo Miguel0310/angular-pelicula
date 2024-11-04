@@ -1,0 +1,15 @@
+@if (!listado) {
+    <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--2xEhJi44--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bked2kyupon5jmkwx4k6.gif" alt="">
+  }@else if(listado?.length === 0){
+    <div #vacio>
+        <ng-content select="[vacio]"></ng-content>
+    </div>
+
+    @if(!vacio.innerHTML.trim()){
+        <div>
+            <p>No hay elemento para mostrar</p>
+        </div>
+    }
+  }@else {
+    <ng-content select="[contenido]"></ng-content>
+  }
