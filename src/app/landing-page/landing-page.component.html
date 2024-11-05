@@ -1,0 +1,11 @@
+<h2>En Cines</h2>
+<!-- Variable de Referencia de plantilla -->
+<input type="file" style="display: none;" #cargadorArchivos> 
+
+<button (click)="cargadorArchivos.click()">Cargar Archivos</button> 
+
+<app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
+
+<h2>Próximos Estrenos</h2>
+
+<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
