@@ -1,14 +1,17 @@
 <app-menu></app-menu>
-
 <app-rating [MaxRatting]="5" (votado)="procesarVoto($event)"></app-rating>
-<h2>En Cines</h2>
-<!-- Variable de Referencia de plantilla -->
-<input type="file" style="display: none;" #cargadorArchivos> 
 
-<button (click)="cargadorArchivos.click()">Cargar Archivos</button> 
+<div class="contenedor">
+    
+    <h2>En Cines</h2>
+    <!-- Variable de Referencia de plantilla -->
+    <input type="file" style="display: none;" #cargadorArchivos> 
 
-<app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
+    <button (click)="cargadorArchivos.click()">Cargar Archivos</button> 
 
-<h2>Próximos Estrenos</h2>
+    <app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
 
-<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
+    <h2>Próximos Estrenos</h2>
+
+    <app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
+</div>
