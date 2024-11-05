@@ -1,6 +1,6 @@
 <app-menu></app-menu>
 
-<app-rating [MaxRatting]="5"></app-rating>
+<app-rating [MaxRatting]="5" (votado)="procesarVoto($event)"></app-rating>
 <h2>En Cines</h2>
 <!-- Variable de Referencia de plantilla -->
 <input type="file" style="display: none;" #cargadorArchivos> 

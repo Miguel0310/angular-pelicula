@@ -16,4 +16,8 @@ export class AppComponent{
   clickBoton(){
     alert('Me has clickeado');
   }
+
+  procesarVoto(voto: number){
+    alert(`Calificación otorgada: ${voto}`);
+  }
 }
