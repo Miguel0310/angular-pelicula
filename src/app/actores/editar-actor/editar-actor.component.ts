@@ -16,7 +16,7 @@ export class EditarActorComponent {
   id!: number;
 
   actor: ActorDTO = {
-    id: 1, nombre: 'Tom Holland', fechaNacimiento: new Date('1991-01-25')
+    id: 1, nombre: 'Tom Holland', fechaNacimiento: new Date('1991-01-25'), foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/220px-Tom_Holland_by_Gage_Skidmore.jpg'
   }
 
   guardarCambios(actor: ActorCreacionDTO){
