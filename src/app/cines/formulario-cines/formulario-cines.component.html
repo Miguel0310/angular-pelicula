@@ -5,6 +5,10 @@
         <mat-error>{{obtenerErrorCampoNombre()}}</mat-error>
     </mat-form-field>
 
+    <h4>Selecione la ubicación del cine</h4>
+
+    <app-mapa (coordenadaSelecionada)="coordenadaSelecionada($event)" [coordenadasIniciales]="coordenadasIniciales"></app-mapa>
+
     <div class="contenedor-botones">
         <button type="submit" mat-flat-button [disabled]="form.invalid">Guardar Cambios</button>
         <a mat-stroked-button routerLink="/cines">Cancelar</a>
