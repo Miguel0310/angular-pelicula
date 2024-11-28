@@ -22,10 +22,12 @@
     </div>
 
     <div>
-        <mat-checkbox [formControl]="form.controls.enCine">En cines</mat-checkbox>
+        <mat-checkbox [formControl]="form.controls.enCines">En cines</mat-checkbox>
     </div>
 
     <div>
-        <button mat-flat-button color="warn">Limpiar</button>
+        <button (click)="limpiar()" mat-flat-button color="warn">Limpiar</button>
     </div>
 </form>
+
+<app-listado-peliculas [peliculas]="peliculas"></app-listado-peliculas>
