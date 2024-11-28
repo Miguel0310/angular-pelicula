@@ -8,6 +8,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { ListadoPeliculasComponent } from "../listado-peliculas/listado-peliculas.component";
 import { FiltroPeliculas } from './filtroPeliculas';
 
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-filtro-peliculas',
   standalone: true,
@@ -18,9 +21,12 @@ import { FiltroPeliculas } from './filtroPeliculas';
 export class FiltroPeliculasComponent implements OnInit{
   
   ngOnInit(): void {
+    this.leerValoresURL();
+    this.buscarPeliculas(this.form.value as FiltroPeliculas);
     this.form.valueChanges.subscribe(valores => {
       this.peliculas = this.peliculasOriginal;
       this.buscarPeliculas(valores as FiltroPeliculas);
+      this.escribirParametrosBusquedaEnURL(valores as FiltroPeliculas);
     });
   }
 
@@ -43,6 +49,49 @@ export class FiltroPeliculasComponent implements OnInit{
     }
   }
 
+  escribirParametrosBusquedaEnURL(valores: FiltroPeliculas){
+    let queryString = [];
+
+    if(valores.titulo){
+      queryString.push(`titulo=${encodeURIComponent(valores.titulo)}`);
+    }
+    if(valores.generoId !== 0){
+      queryString.push(`generoId=${valores.generoId}`);
+    }
+
+    if(valores.proximosEstrenos){
+      queryString.push(`proximosEstrenos=${valores.proximosEstrenos}`);
+    }
+    if(valores.enCines){
+      queryString.push(`enCines=${valores.enCines}`);
+    }
+
+    this.location.replaceState('peliculas/filtrar', queryString.join('&'));
+  }
+
+  leerValoresURL(){
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      var objecto: any = [];
+      if(params.titulo){
+        objecto.titulo = params.titulo;
+      }
+
+      if(params.generoId){
+        objecto.generoId = Number(params.generoId);
+      }
+
+      if(params.proximosEstrenos){
+        objecto.proximosEstrenos = params.proximosEstrenos;
+      }
+
+      if(params.enCines){
+        objecto.enCines = params.enCines;
+      }
+
+      this.form.patchValue(objecto);
+    })
+  }
+
   limpiar(){
     this.form.patchValue({titulo: '',
       generoId: 0,
@@ -51,6 +100,8 @@ export class FiltroPeliculasComponent implements OnInit{
   }
 
   private formBuilder = inject(FormBuilder);
+  private location = inject(Location);
+  private activatedRoute = inject(ActivatedRoute);
 
   form = this.formBuilder.group({
     titulo: '',
